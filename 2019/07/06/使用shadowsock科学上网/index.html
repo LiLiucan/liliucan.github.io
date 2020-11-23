@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="前端狗学后端,  940861563@qq.com">
+  
+  
+  
+  <title>使用shadowsock科学上网 | 前端狗学后端</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="常用服务配置,翻墙,">
+  
+
+  <script>
+    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
+  </script>
+
+  
+
+  
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/icon/iconfont.css">
+<link rel="stylesheet" href="/css/github-markdown.css">
+<link rel="stylesheet" href="/css/highlight.css">
+
+  <!-- <script src="/js/util.js"></script>
+<script src="/js/valine.min.js"></script> -->
+  <script src="/js/util.js"></script>
+
+
+  
+
+  
+
+  
+  
+  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
+  
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
+  
+
+</head>
+
+  <body>
+
+    
+
+    <div id="app">
+
+      <div class="header-wrap">
+  <header>
+    <div class="site-brand">
+      <div class="site-title">
+        <a href="/">前端狗学后端</a>
+      </div>
+    </div>
+    <nav class="site-navigation">
+      <ul class="nav-menu">
+      
+        <li class="nav-item" data-path="/">
+          
+            <a 
+              href="/"
+              target="_self"
+            >
+              主页
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/archives/">
+          
+            <a 
+              href="/archives/"
+              target="_self"
+            >
+              归档
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/categories/">
+          
+            <a 
+              href="/categories/"
+              target="_self"
+            >
+              分类
+            </a>
+          
+        </li>
+      
+        <li class="nav-item" data-path="/tags/">
+          
+            <a 
+              href="/tags/"
+              target="_self"
+            >
+              标签
+            </a>
+          
+        </li>
+      
+      </ul>
+    </nav>
+    <i class="iconfont icon-menu"></i>
+  </header>
+</div>
+
+<script>
+  let links = document.querySelectorAll('.nav-item');
+  for(let link of links){
+    let childrenLink = link.querySelector('ul');
+    link.addEventListener('mouseenter', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown active";
+      }
+    })
+    link.addEventListener('mouseleave', () => {
+      if(childrenLink) {
+        childrenLink.className = "nav-menu--dropdown";
+      }
+    })
+  }
+  let rootRealPath = getRealPath(window.location.pathname, true);
+  for(let link of links) {
+    let linkPath = link.getAttribute("data-path");
+    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
+      link.className = "nav-item hover";
+    }
+  }
+
+  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
+    iconMenuClicked = false;
+  let navDOM = document.querySelector("nav.site-navigation");
+  iconMenu.addEventListener("click", () => {
+    iconMenuClicked 
+      ? navDOM.className = "site-navigation active"
+      : navDOM.className = "site-navigation";
+    iconMenuClicked = !iconMenuClicked;
+  })
+</script>
+
+      
+
+
+
+
+
+
+
+
+<div class="container post-index">
+
+  
+
+<div class="post">
+  <h1 class="article-title">
+    <span>使用shadowsock科学上网</span>
+  </h1>
+  <div class="article-top-meta">
+    <span>
+      发布 : 
+      2019-07-06
+    </span>
+    
+      <span>
+        分类 : 
+          <a href="/categories/常用服务配置/">
+            常用服务配置
+          </a>
+      </span>
+    
+    
+      <span>
+        浏览 : <span class="article-timer" data-identity="使用shadowsock科学上网"></span>
+      </span>
+    
+    <span>
+      评论编号 : 
+      <span id="issueNumber">6</span>
+    </span>
+  </div>
+
+  
+
+  <div class="article-content">
+    <div class="markdown-body">
+      <h1 id="非-VPS-翻墙"><a href="#非-VPS-翻墙" class="headerlink" title="非 VPS 翻墙"></a>非 VPS 翻墙</h1><p>推荐使用板瓦工的<a href="http://justmysocks1.net" target="_blank" rel="noopener">justmysocks</a>服务，这货默认会给 5 个 ip，被封还可以换，只是有些贵。与 VPS 的差别就是这货只能翻墙，VPS 还可以用来搭一些服务。</p>
+<h1 id="VPS-翻墙解决方案"><a href="#VPS-翻墙解决方案" class="headerlink" title="VPS 翻墙解决方案"></a>VPS 翻墙解决方案</h1><p><a href="https://github.com/LiLiucan/drawio-charts/blob/master/shadowsocks.png" target="_blank" rel="noopener">VPS 翻墙方案架构图</a><br>我目前是使用 vps 搭建 shadowscoks 服务，局域网设备通过代理到安装有 shadowsocks 客户端的树莓派翻墙，移动设备可以直接安装 shadowsocks 客户端翻墙，也可以使用树莓派代理。</p>
+<p>关于 VPS，国外的我个人用过<a href="https://bwh88.net" target="_blank" rel="noopener">板瓦工</a>和<a href="https://vultr.com" target="_blank" rel="noopener">vultr</a>两个服务。搬瓦工的好处是有便宜的机器，缺点是如果 ip 被封，换 ip 的话是需要付费的。当然也可以不换 ip 那就有可能要等俩月看 ip 会不会解封了。vultr 的特点：以充值的方式付费，不使用是不扣费的；可以添加多个 VPS 实例，当然也是按每个 VPS 实例收费；多个实例对于翻墙的好处就是不怕封 ip，ip 被封就放弃当前实例，在添加一个就行了。但是 vultr 相对搬瓦工来说还是要贵些。</p>
+<p>国内的最近用了<a href="https://promotion.aliyun.com/ntms/act/qwbk.html?userCode=rr3a2o0r" target="_blank" rel="noopener">aliyun 的入门级配置的应用服务器</a>，可以选择使用香港节点和新加坡节点。之前一直觉得阿里云的贵些，但是现在发现阿里云已经比上面说的国外的便宜了。每月 24 块钱（香港节点和新加坡节点）。</p>
+<h1 id="服务器配置，系统环境为-Ubuntu"><a href="#服务器配置，系统环境为-Ubuntu" class="headerlink" title="服务器配置，系统环境为 Ubuntu"></a>服务器配置，系统环境为 Ubuntu</h1><p>服务端需要安装 shadowsocks server,之前安装 shadowsocks 主要有 python 安装和使用 apt 安装两种方式，但是目前使用 pip 安装的方式已失效，apt 安装在部分 Ubuntu 系统版本上有效。所以，我推荐使用 docker 安装或者使用 snap 安装。</p>
+<h2 id="使用-docker-安装-shadowsocks"><a href="#使用-docker-安装-shadowsocks" class="headerlink" title="使用 docker 安装 shadowsocks"></a>使用 docker 安装 shadowsocks</h2><p>参考：<a href="https://github.com/LiLiucan/docker-shadowsocks" target="_blank" rel="noopener">https://github.com/LiLiucan/docker-shadowsocks</a><br>这里不再介绍更详细的关于 docker 的知识，仅列出常用命令</p>
+<ol>
+<li><p>安装 docker</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装并运行 shadowsocks 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 1984:1984 oddrationale/docker-shadowsocks -s 0.0.0.0 -p 1984 -k $SSPASSWORD -m aes-256-cfb</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：1984 为 shadowsocks 服务端口，可以自定义。 $PASSWORD 为 shadowsocks 服务密码，可以自定义</p>
+</blockquote>
+</li>
+<li><p>停止 shadowsocks 服务<br>查看当前运行的 docker 容器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container ls</span><br></pre></td></tr></table></figure>
+
+<p>上述命令运行后可以看到当前运行的 docker 容器列表，找到 shaowsocks 容器，并复制 CONTAINER ID。<br>使用 CONTAINER ID 停止该 shadowsocks docker 容器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container stop $CONTAINER_ID(这里替换为真实的CONTAINER ID)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重新运行 shadowsocks docker 容器</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container start $CONTAINER_ID(这里替换为真实的CONTAINER ID)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="使用-snap-安装-shadowsocks"><a href="#使用-snap-安装-shadowsocks" class="headerlink" title="使用 snap 安装 shadowsocks"></a>使用 snap 安装 shadowsocks</h2><ol>
+<li>安装 snap</li>
+</ol>
+<h6 id="ubuntu-19-04"><a href="#ubuntu-19-04" class="headerlink" title="ubuntu 19.04"></a>ubuntu 19.04</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install snap</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="ubuntu-18-04"><a href="#ubuntu-18-04" class="headerlink" title="ubuntu 18.04"></a>ubuntu 18.04</h6><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install snapd</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装 shadowsocks</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo snap install shadowsocks --devmode <span class="comment"># 如果不加--devmode在开启服务的时候使用配置文件的话，会报permission denied错误</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h3><ul>
+<li>创建配置文件: /etc/shadowsocks.json</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim /etc/shadowsocks.json</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加如下配置（2 选 1）:</li>
+</ul>
+<ol>
+<li>单用户配置</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: <span class="string">"x.x.x.x"</span>, <span class="comment">// 这里修改为自己的ip</span></span><br><span class="line">  <span class="attr">"server_port"</span>: <span class="number">3389</span>, <span class="comment">// 可以设置为其他端口,3389是windows远程桌面端口,一般不会被封</span></span><br><span class="line">  <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">  <span class="attr">"local_port"</span>: <span class="number">1080</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"mypassword"</span>, <span class="comment">// 这里修改为自己的密码</span></span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"aes-256-cfb"</span> <span class="comment">// 可以使用其他的加密方式</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>多用户配置<br>只需将上述配置中的 server_port 替换为 port_password，最终配置如下：</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: <span class="string">"x.x.x.x"</span>,</span><br><span class="line">  <span class="attr">"port_password"</span>: &#123;</span><br><span class="line">    <span class="attr">"8080"</span>: <span class="string">"passwd1"</span>,</span><br><span class="line">    <span class="attr">"8081"</span>: <span class="string">"passwd2"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"local_address"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">  <span class="attr">"local_port"</span>: <span class="number">1080</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"aes-256-cfb"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="开启-shadowsocks-服务"><a href="#开启-shadowsocks-服务" class="headerlink" title="开启 shadowsocks 服务"></a>开启 shadowsocks 服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo snap run shadowsocks.ssserver -c /etc/shadowsocks.json -d start</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭-shadowsocks-服务"><a href="#关闭-shadowsocks-服务" class="headerlink" title="关闭 shadowsocks 服务"></a>关闭 shadowsocks 服务</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo snap run shadowsocks.ssserver -c /etc/shadowsocks.json -d stop</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="树莓派客户端"><a href="#树莓派客户端" class="headerlink" title="树莓派客户端"></a>树莓派客户端</h1><h3 id="客户端安装配置"><a href="#客户端安装配置" class="headerlink" title="客户端安装配置"></a>客户端安装配置</h3><p>客户端的安装和使用方式和服务端一样，配置和服务端单用户配置一样。</p>
+<h3 id="开启-shadowsocks-客户端"><a href="#开启-shadowsocks-客户端" class="headerlink" title="开启 shadowsocks 客户端"></a>开启 shadowsocks 客户端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo snap run shadowsocks.sslocal -c /etc/shadowsocks.json -d start</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="关闭-shadowsocks-客户端"><a href="#关闭-shadowsocks-客户端" class="headerlink" title="关闭 shadowsocks 客户端"></a>关闭 shadowsocks 客户端</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo snap run shadowsocks.sslocal -c /etc/shadowsocks.json -d stop</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-polipo-实现-socks5-转-http-代理"><a href="#使用-polipo-实现-socks5-转-http-代理" class="headerlink" title="使用 polipo 实现 socks5 转 http 代理"></a>使用 polipo 实现 socks5 转 http 代理</h3><ul>
+<li>安装 polipo</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> apt-get install polipo</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>编辑配置文件</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim /etc/polipo/config</span></span><br><span class="line"></span><br><span class="line">添加如下内容：</span><br><span class="line">socksParentProxy = "127.0.0.1:1080" // 此处的1080端口对应服务端配置的local_port</span><br><span class="line">socksProxyType = "socks5"</span><br><span class="line">proxyAddress = "127.0.0.1"</span><br><span class="line">proxyPort = 8123 // 暴露的代理服务器端口</span><br></pre></td></tr></table></figure>
+
+<h3 id="局域网客户端代理配置"><a href="#局域网客户端代理配置" class="headerlink" title="局域网客户端代理配置"></a>局域网客户端代理配置</h3><p>局域网客户端将网络代理设置为上述树莓派客户端即可，代理端口号为上述 proxyPort。</p>
+
+    </div>
+  </div>
+  
+  
+  
+
+  
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+      <span>
+        
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/翻墙/">
+              #翻墙
+            </a>
+          </span>
+          
+        
+      </span>
+    </div>
+    <div class="article-meta pull-right">
+    </div>
+  </div>
+</div>
+
+
+  <aside id="sidebar">
+    <p id="sidebar-header"></p>
+    <ol id="sidebar-toc"></ol>
+  </aside>
+  <script async>setTimeout(generateToc, 10);</script>
+
+
+  <nav class="post-navigation">
+    
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/2019/06/29/Ubuntu日常使用问题记录/" target="_self">Ubuntu日常使用问题记录</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/2019/09/09/Ubuntu安装PostgresQL/" target="_self">Ubuntu18.04安装PostgresQL</a>
+        <i class="iconfont icon-next"></i>
+      </div>
+    
+  </nav>
+
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<div id="gitalk-container"></div>
+
+<script defer>
+    var issueNumber = document.querySelector('#issueNumber').innerHTML;
+    var gitalk = new Gitalk({
+        clientID: '7bfba887c4d0e748b724',
+        clientSecret: '707587ccc594d417674a07a9f7083687f5168bac',
+        repo: 'liliucan.github.io',
+        owner: 'Liliucan',
+        admin: ['Liliucan,'],
+        // id: decodeURIComponent(window.document.title),      // Ensure uniqueness and length less than 50
+        number: Number(issueNumber),
+        distractionFreeMode: false,  // Facebook-like distraction free mode
+        createIssueManually: false
+    });
+    gitalk.render('gitalk-container')
+  </script>
+   
+
+  
+    <script defer>
+const valineAPI = (() => {
+  try {
+    AV.init("Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz", "WaR7nrzhliHj9aVwdQzkdlGd");
+  } catch(error) {}
+  const isExist = (identity) => {
+    identity = identity || getRealPath();
+    let query = new AV.Query('Timer');
+    return new Promise((resolve, reject) => {
+      query.equalTo("identity", identity);
+      query.find().then(results => {
+        resolve(results.length > 0);
+      }, error => reject(error));
+    })
+  }
+
+  const _get = (identity) => {
+    let query = null;
+    if(identity && identity instanceof Array){
+      let querys = [];
+      for(let i = 0; i < identity.length; ++i) {
+        querys[i] = new AV.Query('Timer');
+        querys[i].equalTo('identity', identity[i]);
+      }
+      query = AV.Query.or.apply(null ,querys);
+    } else {
+      identity = identity || getRealPath();
+      query = new AV.Query("Timer");
+      query.equalTo("identity", identity);
+    }
+
+    return new Promise((resolve, reject) => {
+      query.find()
+      .then(results => resolve(results))
+      .catch(error => reject(error))
+    })
+  }
+
+  const create = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let Todo = AV.Object.extend('Timer');
+      let todo = new Todo();
+      todo.set("times", 1);
+      todo.set("identity", identity);
+      todo.save().then(res => resolve(true), error => reject(error));
+    })
+  }
+
+  const update = (identity) => {
+    identity = identity || getRealPath();
+    return new Promise((resolve, reject) => {
+      let query = new AV.Query('Timer');
+      query.equalTo("identity", identity);
+      query.find().then(todos => {
+        todos.forEach(todo => {
+          todo.set("times", todo.attributes.times + 1);
+        });
+        return AV.Object.saveAll(todos);
+      }).then(todos => resolve(true), error => reject(error));
+    })
+  }
+
+  return {
+    isExist,
+    _get,
+    update,
+    create
+  }
+})()
+
+const calcAndWriteTimes = () => {
+  let isPost = true;
+
+  let timerAllDOM = document.querySelectorAll(".article-timer");
+
+  if(isPost) {
+    let identity = timerAllDOM[0].getAttribute("data-identity");
+    valineAPI.isExist(identity)
+    .then(exist => {
+      if(exist) {
+        return valineAPI.update(identity);
+      }
+      return new Promise(resolve => resolve(true));
+    })
+    .then( succuess => valineAPI._get(identity))
+    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
+    .catch(error => console.log(error.message))
+    return ;
+  }
+
+  let timerDOMCache = {};
+
+  for(let timerDOM of timerAllDOM) {
+    let identity = timerDOM.getAttribute("data-identity");
+    if(timerDOMCache.hasOwnProperty(identity)){
+      timerDOMCache[identity].dom.push(timerDOM);
+    }else{
+      timerDOMCache[identity] = {
+        dom: [timerDOM],
+        times: undefined
+      };
+    }
+  }
+
+  let identities = Object.keys(timerDOMCache);
+  valineAPI._get(identities).then(results => {
+    for(let result of results) {
+      let {identity, times} = result.attributes;
+      timerDOMCache[identity].times = times;
+      timerDOMCache[identity].dom.map(item => item.innerText = times);
+    }
+    for(let identity of identities) {
+      if(timerDOMCache[identity].times){
+        continue;
+      }
+      timerDOMCache[identity].dom.map(item => item.innerText = 1);
+      valineAPI.create(identity);
+    }
+  }).catch(error => console.log(error.message))
+}
+
+if(true){
+  calcAndWriteTimes();
+}
+</script>
+   
+
+</div>
+
+
+      <footer>
+  <p class="site-info">
+    博客已萌萌哒运行
+    <span id="time-to-now"></span>
+    <!-- <span class="my-face">(●'◡'●)ﾉ♥</span> -->
+    <!-- <br>
+    Theme - <a href="https://github.com/dongyuanxin/theme-bmw">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/">GodBMW</a>
+    <br> -->
+    
+  </p>
+
+<div>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+  本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+</footer>
+
+
+
+<script>
+const timeToNowDOM = document.querySelector("#time-to-now");
+const startTimestamp = new Date(2019, 3, 14).getTime();
+
+const updateTimeStr = () => {
+  let offset = parseInt(
+      (new Date().getTime() - startTimestamp) / 1000,
+      10
+    ),
+    day = Math.floor(offset / 86400),
+    hour = Math.floor((offset % 86400) / 3600),
+    minute = Math.floor(((offset % 86400) % 3600) / 60),
+    second = Math.floor(((offset % 86400) % 3600) % 60);
+  timeToNowDOM.innerHTML =
+    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
+  setTimeout(updateTimeStr, 500);
+}
+
+setTimeout(updateTimeStr, 500);
+</script>
+
+
+      <div class="back-to-top hidden">
+  <span>
+    <i class="iconfont icon-60"></i><span></span>%
+  </span>
+</div>
+
+<script>
+const updateIconToTop = percent => {
+  let dom = document.querySelector(".back-to-top span span");
+  dom.innerText = percent;
+  if(percent < 1) {
+    document.querySelector(".back-to-top").className = "back-to-top hidden";
+  } else {
+    document.querySelector(".back-to-top").className = "back-to-top";
+  }
+}
+
+const handleScoll = () => {
+  let isRunning = false;
+  return () => {
+    if (isRunning) return;
+    isRunning = true;
+    window.requestAnimationFrame(timestamp => {
+      let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop,
+        scrollHeight =
+          document.documentElement.scrollHeight ||
+          document.body.scrollHeight,
+        clientHeight =
+          document.documentElement.clientHeight ||
+          document.body.clientHeight;
+      isRunning = false;
+      if (scrollTop <= 1) {
+        updateIconToTop(0);
+        return;
+      }
+      if (scrollTop + clientHeight >= scrollHeight) {
+        updateIconToTop(100);
+      } else {
+        updateIconToTop(parseInt(
+          100 * scrollTop / (scrollHeight - clientHeight),
+          10
+        ));
+      }
+    });
+  };
+}
+
+const backToTop = () => {
+  let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop,
+    delay = 10,
+    time = 200;
+  if (scrollTop <= 20) {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    return;
+  }
+  let step = Math.ceil(scrollTop * delay / time);
+  let timer = setInterval(() => {
+    scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop - step <= 0) {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      clearInterval(timer);
+    } else {
+      document.documentElement.scrollTop = scrollTop - step;
+      document.body.scrollTop = scrollTop - step;
+    }
+  }, delay);
+}
+
+document.addEventListener("scroll", handleScoll(), false);
+
+document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
+
+</script>
+
+    </div>
+
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script>
+  (() => {
+    const mathjaxConfig = {
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+        availableFonts: ["STIX", "TeX"], //可选字体
+        showMathMenu: false //关闭右击菜单显示
+      }
+    }
+
+    let mathjaxInterval = setInterval(() => {
+      if(!window.MathJax){
+        return;
+      }
+      window.MathJax.Hub.Config(mathjaxConfig)
+      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
+
+      clearInterval(mathjaxInterval)
+    }, 10)    
+  })()
+</script>
+    
+
+    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
+<script async>
+  let fancyTimer = setInterval(function(){
+    if(!window.$){
+      return;
+    }
+    $(document).ready(function() {
+      $(".post img").each(function () {
+        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
+          return;
+        }
+        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        $(this).wrap(element);
+      });
+      
+      clearInterval(fancyTimer);
+    });
+  }, 10);
+</script>
+
+    
+  </body>
+
+</html>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://liliucan.github.io/blog</id>
-    <title>李留灿的个人网站 Blog</title>
+    <title>李留灿的个人主页 Blog</title>
     <updated>2020-11-23T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://liliucan.github.io/blog"/>
-    <subtitle>李留灿的个人网站 Blog</subtitle>
+    <subtitle>李留灿的个人主页 Blog</subtitle>
     <icon>https://liliucan.github.io/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[git commit message规范]]></title>

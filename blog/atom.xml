@@ -15,6 +15,13 @@
         <summary type="html"><![CDATA[Commit message格式]]></summary>
     </entry>
     <entry>
+        <title type="html"><![CDATA[浏览器缓存策略]]></title>
+        <id>http cache</id>
+        <link href="https://liliucan.github.io/blog/http cache"/>
+        <updated>2020-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[http cache]]></summary>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[对Redux的一点理解]]></title>
         <id>Redux</id>
         <link href="https://liliucan.github.io/blog/Redux"/>

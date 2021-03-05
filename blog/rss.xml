@@ -15,6 +15,13 @@
             <description><![CDATA[Commit message格式]]></description>
         </item>
         <item>
+            <title><![CDATA[浏览器缓存策略]]></title>
+            <link>https://liliucan.github.io/blog/http cache</link>
+            <guid>http cache</guid>
+            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[http cache]]></description>
+        </item>
+        <item>
             <title><![CDATA[对Redux的一点理解]]></title>
             <link>https://liliucan.github.io/blog/Redux</link>
             <guid>Redux</guid>

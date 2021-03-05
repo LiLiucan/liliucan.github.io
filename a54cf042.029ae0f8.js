@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{82:function(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"git commit message\u89c4\u8303","permalink":"/blog/git-commit-message"}]}')}}]);

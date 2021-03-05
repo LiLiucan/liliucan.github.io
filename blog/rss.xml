@@ -14,5 +14,12 @@
             <pubDate>Mon, 23 Nov 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Commit message格式]]></description>
         </item>
+        <item>
+            <title><![CDATA[对Redux的一点理解]]></title>
+            <link>https://liliucan.github.io/blog/Redux</link>
+            <guid>Redux</guid>
+            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[1. Redux是一种架构，也可以理解为是一个规范或者约定。其核心就是单向数据流。]]></description>
+        </item>
     </channel>
 </rss>

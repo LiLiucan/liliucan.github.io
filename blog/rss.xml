@@ -28,5 +28,12 @@
             <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[Redux是一种架构，也可以理解为是一个规范或者约定。其核心就是单向数据流。]]></description>
         </item>
+        <item>
+            <title><![CDATA[http协议演进]]></title>
+            <link>https://liliucan.github.io/blog/http revolutions</link>
+            <guid>http revolutions</guid>
+            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[http1.x的缺陷]]></description>
+        </item>
     </channel>
 </rss>

@@ -28,4 +28,11 @@
         <updated>2020-03-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Redux是一种架构，也可以理解为是一个规范或者约定。其核心就是单向数据流。]]></summary>
     </entry>
+    <entry>
+        <title type="html"><![CDATA[http协议演进]]></title>
+        <id>http revolutions</id>
+        <link href="https://liliucan.github.io/blog/http revolutions"/>
+        <updated>2020-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[http1.x的缺陷]]></summary>
+    </entry>
 </feed>

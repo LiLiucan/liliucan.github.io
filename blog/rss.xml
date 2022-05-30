@@ -4,9 +4,16 @@
         <title>李留灿的个人主页 Blog</title>
         <link>https://liliucan.github.io/blog</link>
         <description>李留灿的个人主页 Blog</description>
-        <lastBuildDate>Mon, 23 Nov 2020 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 30 May 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[nodejs路径别名]]></title>
+            <link>https://liliucan.github.io/blog/nodejs-path-alias</link>
+            <guid>nodejs-path-alias</guid>
+            <pubDate>Mon, 30 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[可用的解决方案]]></description>
+        </item>
         <item>
             <title><![CDATA[git commit message规范]]></title>
             <link>https://liliucan.github.io/blog/git-commit-message</link>
@@ -22,18 +29,18 @@
             <description><![CDATA[单例模式]]></description>
         </item>
         <item>
-            <title><![CDATA[控制反转]]></title>
-            <link>https://liliucan.github.io/blog/IOC</link>
-            <guid>IOC</guid>
-            <pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[对于控制反转的理解，主要在于“反转”。]]></description>
-        </item>
-        <item>
             <title><![CDATA[库、运行时和开发框架的区别]]></title>
             <link>https://liliucan.github.io/blog/diffrence bettween library rutime and framework</link>
             <guid>diffrence bettween library rutime and framework</guid>
             <pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[库（library）、运行时（runtime）和开发框架（framework）的区别]]></description>
+        </item>
+        <item>
+            <title><![CDATA[控制反转]]></title>
+            <link>https://liliucan.github.io/blog/IOC</link>
+            <guid>IOC</guid>
+            <pubDate>Sun, 08 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[对于控制反转的理解，主要在于“反转”。]]></description>
         </item>
         <item>
             <title><![CDATA[心智模型]]></title>
@@ -43,13 +50,6 @@
             <description><![CDATA[“心智模式”是一种思维定式，我们这里所说的思维定式并非是一个贬义词，而是指我们认识事物的方法和习惯。]]></description>
         </item>
         <item>
-            <title><![CDATA[React和Vue的区别]]></title>
-            <link>https://liliucan.github.io/blog/React Vue</link>
-            <guid>React Vue</guid>
-            <pubDate>Fri, 06 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[1. ### 状态变化到ui更新的过程不同]]></description>
-        </item>
-        <item>
             <title><![CDATA[React Hooks]]></title>
             <link>https://liliucan.github.io/blog/React</link>
             <guid>React</guid>
@@ -57,11 +57,18 @@
             <description><![CDATA[Class Components到hooks最重要的变化应该是心智模型的变化]]></description>
         </item>
         <item>
-            <title><![CDATA[浏览器缓存策略]]></title>
-            <link>https://liliucan.github.io/blog/http cache</link>
-            <guid>http cache</guid>
+            <title><![CDATA[React和Vue的区别]]></title>
+            <link>https://liliucan.github.io/blog/React Vue</link>
+            <guid>React Vue</guid>
+            <pubDate>Fri, 06 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[1. ### 状态变化到ui更新的过程不同]]></description>
+        </item>
+        <item>
+            <title><![CDATA[对Redux的一点理解]]></title>
+            <link>https://liliucan.github.io/blog/Redux</link>
+            <guid>Redux</guid>
             <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[http cache]]></description>
+            <description><![CDATA[Redux是一种架构，也可以理解为是一个规范或者约定。其核心就是单向数据流。]]></description>
         </item>
         <item>
             <title><![CDATA[http协议演进]]></title>
@@ -71,11 +78,11 @@
             <description><![CDATA[http1.x的缺陷]]></description>
         </item>
         <item>
-            <title><![CDATA[对Redux的一点理解]]></title>
-            <link>https://liliucan.github.io/blog/Redux</link>
-            <guid>Redux</guid>
+            <title><![CDATA[浏览器缓存策略]]></title>
+            <link>https://liliucan.github.io/blog/http cache</link>
+            <guid>http cache</guid>
             <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[Redux是一种架构，也可以理解为是一个规范或者约定。其核心就是单向数据流。]]></description>
+            <description><![CDATA[http cache]]></description>
         </item>
     </channel>
 </rss>

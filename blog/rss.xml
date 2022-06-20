@@ -4,9 +4,16 @@
         <title>李留灿的个人主页 Blog</title>
         <link>https://liliucan.github.io/blog</link>
         <description>李留灿的个人主页 Blog</description>
-        <lastBuildDate>Mon, 30 May 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[书单]]></title>
+            <link>https://liliucan.github.io/blog/books</link>
+            <guid>books</guid>
+            <pubDate>Mon, 20 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[被业界称为“五部曲”的核心著作：“黑客圈简史”（A Brief History of Hackerdom）、“大教堂和大集市”（The Cathedral and the Bazaar）、“如何成为一名黑客”（How To Become A Hacker）、“开拓心智层”（Homesteading the Noosphere）和“魔法锅”（The Magic Cauldron）。]]></description>
+        </item>
         <item>
             <title><![CDATA[nodejs项目模块路径别名]]></title>
             <link>https://liliucan.github.io/blog/nodejs-path-alias</link>
@@ -50,13 +57,6 @@
             <description><![CDATA[“心智模式”是一种思维定式，我们这里所说的思维定式并非是一个贬义词，而是指我们认识事物的方法和习惯。]]></description>
         </item>
         <item>
-            <title><![CDATA[React Hooks]]></title>
-            <link>https://liliucan.github.io/blog/React</link>
-            <guid>React</guid>
-            <pubDate>Fri, 06 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[Class Components到hooks最重要的变化应该是心智模型的变化]]></description>
-        </item>
-        <item>
             <title><![CDATA[React和Vue的区别]]></title>
             <link>https://liliucan.github.io/blog/React Vue</link>
             <guid>React Vue</guid>
@@ -64,11 +64,11 @@
             <description><![CDATA[1. ### 状态变化到ui更新的过程不同]]></description>
         </item>
         <item>
-            <title><![CDATA[浏览器缓存策略]]></title>
-            <link>https://liliucan.github.io/blog/http cache</link>
-            <guid>http cache</guid>
-            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[http cache]]></description>
+            <title><![CDATA[React Hooks]]></title>
+            <link>https://liliucan.github.io/blog/React</link>
+            <guid>React</guid>
+            <pubDate>Fri, 06 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[Class Components到hooks最重要的变化应该是心智模型的变化]]></description>
         </item>
         <item>
             <title><![CDATA[http协议演进]]></title>
@@ -76,6 +76,13 @@
             <guid>http revolutions</guid>
             <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
             <description><![CDATA[http1.x的缺陷]]></description>
+        </item>
+        <item>
+            <title><![CDATA[浏览器缓存策略]]></title>
+            <link>https://liliucan.github.io/blog/http cache</link>
+            <guid>http cache</guid>
+            <pubDate>Thu, 05 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[http cache]]></description>
         </item>
         <item>
             <title><![CDATA[对Redux的一点理解]]></title>
